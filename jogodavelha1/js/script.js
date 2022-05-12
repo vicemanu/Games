@@ -198,6 +198,7 @@ function cpuJoga() {
         }
         atualizaTabuleiro();
             jogada++
+    
             quemJoga = 0;
     }
 }
