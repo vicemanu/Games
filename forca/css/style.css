@@ -20,8 +20,9 @@ body {
     flex-direction: column;
 }
 
-#img {
-    background: url(../img/forca.png) no-repeat;
+#imagem {
+    background: url(../img/forca.png);
+    background-repeat: no-repeat;
     width: 234px;
     height: 272px;
 
@@ -56,6 +57,10 @@ body {
     color: #8B008B;
     font-weight: 900;
     font-family: 'Ubuntu', sans-serif;
+}
+
+.teclas button:disabled {
+    cursor: not-allowed;
 }
 
 .teclas button:hover {
