@@ -336,11 +336,11 @@ function inicia(){
     if(quemComeca==1) {
         quemComeca=0;
         quemJoga=quemComeca
-        document.getElementById("quemComeça").innerHTML ="Quem Joga: JOGADOR"
+        document.getElementById("quemComeça").innerHTML ="Quem Começa: JOGADOR"
     }else {
         quemComeca=1;
         quemJoga=quemComeca
-        document.getElementById("quemComeça").innerHTML ="Quem Joga: COMPUTADOR"
+        document.getElementById("quemComeça").innerHTML ="Quem Começa: COMPUTADOR"
         cpuJoga()
     }
 }
