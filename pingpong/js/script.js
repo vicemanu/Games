@@ -21,6 +21,8 @@ var posJogIniY = 180;
 var posCpuIniY = 180;
 var posBolaIniX = 475;
 var posBolaIniY = 240;
+var posJogIniX = 10;
+var posCpuIniX = 930;
 
 
 var campoX= 0;
@@ -54,12 +56,86 @@ function controlajog() {
     }
 }
 
+function controlacpu() {
+    if (jogo) {
+        if((posBolaX > (campoW/2))&& (bolaX > 0)) {
+
+            if(((posBolaY+(bolaH/2))>((posCpuY+(barraH/2)))+velCpu)) {
+                if((posCpuY+barraH)<= campoH) {
+                    posCpuY+=velCpu;
+                }
+            } else if ((posBolaY+(bolaH/2)) < (posCpuY+(barraH/2)) -velCpu) {
+                if(posCpuY >= 0) {
+                    posCpuY-=velCpu;
+                }
+            }
+        } else {
+            if ((posCpuY+(barraH/2)) < (campoH/2)) {
+                posCpuY+=velCpu;
+            } else if((posCpuY+(barraH/2)) > (campoH/2)) {
+                posCpuY -=velCpu;
+            }
+        }
+        vcpu.style.top = posCpuY + "px"
+    }
+}
+
 function controlaBola() {
     posBolaX += velBola * bolaX;
     posBolaY += velBola * bolaY;
 
-    vbola.style.top = posBolaY+"px";
-    vbola.style.left = posBolaX+"px"
+    //Colisão com Jogador
+    if(
+        (posBolaX <= posJogadorX+barraW) && ((posBolaY+bolaH >= posJogadorY) && (posBolaY<= posJogadorY+barraH))
+        ) {
+            bolaY = ((bolaY=posBolaY+(bolaH/2)) - (posJogadorY+(barraH/2)))/16;
+            bolaX *= -1;
+      }
+
+    //Colisão com CPU
+    if((posBolaX >= (posCpuX-barraW)) && ((posBolaY+bolaH) >= posCpuY) && (posBolaY<= (posCpuY+barraH))) {
+
+        bolaY = ((bolaY=posBolaY+(bolaH/2)) - (posCpuY+(barraH/2)))/16;
+        bolaX*= -1
+      }
+    
+      // Colisão com a barra superior e inferior 
+
+      if (posBolaY >= 480 || posBolaY <= 0) {
+          bolaY *= -1
+      }
+
+      // Se marcar ponto 
+
+      if (posBolaX >= campoW-bolaW) {
+          velBola = 0;
+          
+          posJogadorY = posJogIniY
+          posCpuY = posCpuIniY
+          pontos ++
+          vPaineltxtPontos.value = pontos;
+          jogo =false;
+          vjogador.style.top = posJogadorY+"px"
+          vcpu.style.top = posCpuY + "px"
+          posBolaX = posBolaIniX
+          posBolaY = posBolaIniY
+
+      }else if (posBolaX <= 0) {
+        velBola = 0;
+        posJogadorY = posJogIniY
+        posCpuY = posCpuIniY
+        pontos --
+        vPaineltxtPontos.value = pontos;
+        jogo =false;
+        vjogador.style.top = posJogadorY+"px"
+        vcpu.style.top = posCpuY+"px"
+        posBolaX = posBolaIniX
+        posBolaY = posBolaIniY
+
+    }
+
+    vbola.style.top = posBolaY +"px"
+    vbola.style.left = posBolaX +"px"
 }
 
 
@@ -88,6 +164,7 @@ function game() {
     if (jogo) {
         controlajog()
         controlaBola()
+        controlacpu()
     }
     frame = requestAnimationFrame(game);
 }
@@ -95,6 +172,7 @@ function game() {
 
 function iniciaJogo() {
     if (!jogo) {
+        velBola = velCpu = velJogador = 8;
         cancelAnimationFrame(frame);
         jogo = true;
         dirJy = 0;
@@ -109,6 +187,8 @@ function iniciaJogo() {
         posBolaY = posBolaIniY;
         posJogadorY = posJogIniY;
         posCpuY = posCpuIniY;
+        posJogadorX=posJogIniX;
+        posCpuX=posCpuIniX;
         game();
 }   
     
@@ -119,7 +199,7 @@ function iniciliza(){
     vbtIniciar=document.getElementById("btIniciar");
     vbtIniciar.addEventListener("click", iniciaJogo)
     vjogador=document.getElementById("dvJogador");
-    vcpu=document.getElementById("dvCpu");
+    vcpu = document.getElementById("dvCPU")
     vbola=document.getElementById("dvBola");
     vPaineltxtPontos=document.getElementById("txtPontos");
     document.addEventListener("keydown", teclaDw);
