@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="pad.js"></script>
+    <script src="bola.js"></script>
+    <script src="placar.js"></script>
+    
+    <title>PingPong</title>
+</head>
+
+<body>
+    <div style="display: flex; justify-content: center; padding-top: 20px; flex-wrap: wrap;">
+    <canvas id="pigpong" width="1000" height="500" style="border: 1px solid black; ">
+        <h1>ERRO!!! Seu browser não suporta canvas</h1>
+    </canvas>
+</div>
+    <button onclick="bola.iniciar()">Iniciar</button>
+
+</body>
+<script type="text/javascript">
+
+
+pj1 = 0
+pj2 = 0
+    var boxCanva1 = document.getElementById("pigpong");
+    var box = boxCanva1.getContext('2d');
+
+
+
+    const TECLADO  = {
+        cima: false,
+        baixo: false,
+        esquerda: false,
+        direita: false
+    }
+
+    const TECLADO_2  = {
+        cima: false,
+        baixo: false,
+        esquerda: false,
+        direita: false
+    }
+
+    let wid = boxCanva1.width
+    let hei = boxCanva1.height
+
+    var Jogador = new Pad1(box, TECLADO, wid, hei)
+    var Jogador2 = new Pad2(box, TECLADO_2, wid, hei)
+    var bola = new Bola(box,Jogador,Jogador2, wid, hei)
+    var placar = new Placar(box, wid)
+
+    //Teclado jogador 1
+
+    window.addEventListener("keydown",(e) => {
+        var tecla = e.key
+
+        if(tecla === "w" ) {
+            TECLADO.cima = true;
+        } else if (tecla === "s") {
+            TECLADO.baixo = true;
+        } else if (tecla === "d") {
+            TECLADO.direita = true;
+        } else if (tecla === "a") {
+            TECLADO.esquerda = true;
+        }
+
+    })
+
+    window.addEventListener("keyup",(e) => {
+        var tecla = e.key
+
+        if(tecla === "w" ) {
+            TECLADO.cima = false;
+        } else if (tecla === "s") {
+            TECLADO.baixo = false;
+        } else if (tecla === "d") {
+            TECLADO.direita = false;
+        } else if (tecla === "a") {
+            TECLADO.esquerda = false;
+        }
+
+    })
+
+    //Teclado jogador 2
+
+    window.addEventListener("keydown",(e) => {
+        var tecla = e.key
+
+        if(tecla === "ArrowUp" ) {
+            TECLADO_2.cima = true;
+        } else if (tecla === "ArrowDown") {
+            TECLADO_2.baixo = true;
+        } else if (tecla === "ArrowRight") {
+            TECLADO_2.direita = true;
+        } else if (tecla === "ArrowLeft") {
+            TECLADO_2.esquerda = true;
+        }
+
+    })
+
+    window.addEventListener("keyup",(e) => {
+        var tecla = e.key
+
+        if(tecla === "ArrowUp" ) {
+            TECLADO_2.cima = false;
+        } else if (tecla === "ArrowDown") {
+            TECLADO_2.baixo = false;
+        } else if (tecla === "ArrowRight") {
+            TECLADO_2.direita = false;
+        } else if (tecla === "ArrowLeft") {
+            TECLADO_2.esquerda = false;
+        }
+
+    })
+
+    
+
+
+    const GAME = () => {
+        box.clearRect(0,0,boxCanva1.width, boxCanva1.height)
+        Jogador.desenhar()
+        Jogador2.desenhar()
+        bola.desenhar()
+        placar.desenhar()
+        requestAnimationFrame(GAME)
+    }
+
+
+    requestAnimationFrame(GAME)
+</script>
+</html>
