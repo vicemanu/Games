@@ -3,7 +3,7 @@ class Placar{
         this.box = box;
         this.wid =  wid;
         this.margem = 10
-        this.largura = 100
+        this.largura = 85
 
     }
     desenhar() {
