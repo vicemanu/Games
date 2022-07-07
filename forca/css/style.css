@@ -30,7 +30,7 @@ body {
 
 #plv-secreta {
     display: flex;
-    margin-top: 30px;
+    margin-top: 10px;
     text-align: center;
 }
 
@@ -42,7 +42,7 @@ body {
 }
 
 #teclado {
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .teclas button {
@@ -68,7 +68,7 @@ body {
 }
 
 #categoria {
-    margin-top: 30px;
+    margin-top: 20px;
     font-size: 1.3em;
     color: #8B008B;
 }
