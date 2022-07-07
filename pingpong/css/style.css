@@ -15,20 +15,21 @@ body {
    margin: 5px;
   }
   #dvJogo {
-   width: 960px;
+   width: 890px;
    height: 500px;
 
    border: 1px solid #000;
-   background-color: #000;
+   background-color: #fff;
    position: relative;
   }
+
   #dvBola {
    position: absolute;
    top: 240px;
    left: 475px;
    width: 20px;
    height: 20px;
-   background-color: #888;
+   background-color: #000;
    border-radius: 50%;
   }
 
@@ -36,14 +37,14 @@ body {
    position: absolute;
    width: 20px;
    height: 140px;
-   background-color: #888;
+   background-color: #000;
    top: 180px;
   }
   .esquerda {
    left: 10px;
   }
   .direita {
-   left: 930px;
+   left: 860px;
   }
 
   label {

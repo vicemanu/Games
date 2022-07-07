@@ -22,12 +22,12 @@ var posCpuIniY = 180;
 var posBolaIniX = 475;
 var posBolaIniY = 240;
 var posJogIniX = 10;
-var posCpuIniX = 930;
+var posCpuIniX = 860;
 
 
 var campoX= 0;
 var campoY= 0;
-var campoW = 960
+var campoW = 890;
 var campoH = 500;
 var barraW = 20;
 var barraH = 140;
