@@ -19,15 +19,15 @@ var dirJy;
 
 var posJogIniY = 180;
 var posCpuIniY = 180;
-var posBolaIniX = 475;
+var posBolaIniX = 440;
 var posBolaIniY = 240;
 var posJogIniX = 10;
-var posCpuIniX = 860;
+var posCpuIniX = 850;
 
 
 var campoX= 0;
 var campoY= 0;
-var campoW = 890;
+var campoW = 880;
 var campoH = 500;
 var barraW = 20;
 var barraH = 140;
